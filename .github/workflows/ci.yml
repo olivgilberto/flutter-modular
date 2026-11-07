@@ -7,6 +7,9 @@ on:
   pull_request:
   push:
     branches: [main]
+  # Cópia pública do livro: o CI também roda à mão, pela aba Actions
+  # (só a análise, as fronteiras e os testes).
+  workflow_dispatch:
 
 # Um push novo no mesmo pull request cancela a execução anterior. Na main,
 # nada é cancelado: cada merge gera o seu build de release e envia os seus
