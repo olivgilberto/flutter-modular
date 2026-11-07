@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "notesTitle": "Notes",
+  "@notesTitle": { "description": "Title of the notes screen." },
+  "notesEmpty": "No notes yet",
+  "@notesEmpty": { "description": "Shown when there are no notes." }
+}

@@ -15,6 +15,7 @@ dependencies:
   design_system:
   auth_module:
   tasks_module:
+  notes_module:
   adapter_analytics_firebase:
   adapter_connectivity_connectivity_plus:
   adapter_db_sqlcipher:

@@ -4,6 +4,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notes_module/notes_module.dart';
 import 'package:tasks_module/tasks_module.dart';
 
 import 'connectivity/connectivity_banner_host.dart';
@@ -73,4 +74,5 @@ const appLocalizationsDelegates = <LocalizationsDelegate<Object?>>[
 const moduleLocalizationsDelegates = <LocalizationsDelegate<Object?>>[
   AuthModuleLocalizations.delegate,
   TasksModuleLocalizations.delegate,
+  NotesModuleLocalizations.delegate,
 ];

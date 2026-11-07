@@ -8,6 +8,7 @@ import 'package:adapter_sync_workmanager/adapter_sync_workmanager.dart';
 import 'package:auth_module/auth_module.dart';
 import 'package:core/core.dart';
 import 'package:get_it/get_it.dart';
+import 'package:notes_module/notes_module.dart';
 import 'package:tasks_module/tasks_module.dart';
 
 import 'app_config.dart';
@@ -46,6 +47,7 @@ void openSessionScope() {
     scopeName: sessionScope,
     init: (scope) {
       registerTasksModuleDependencies(scope);
+      registerNotesModuleDependencies(scope);
     },
     dispose: () {
       getIt<LogoutCleanerRegistry>().unregisterAll();

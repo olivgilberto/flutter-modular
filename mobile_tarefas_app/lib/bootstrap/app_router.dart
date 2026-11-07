@@ -2,6 +2,7 @@ import 'package:auth_module/auth_module.dart';
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notes_module/notes_module.dart';
 import 'package:tasks_module/tasks_module.dart';
 
 import '../home/app_frame.dart';
@@ -53,7 +54,7 @@ GoRouter createAppRouter(
     ShellRoute(
       observers: [?_screenViews(analytics)],
       builder: (context, state, child) => AppFrame(child: child),
-      routes: tasksModuleRoutes,
+      routes: [...tasksModuleRoutes, ...notesModuleRoutes],
     ),
   ],
 );

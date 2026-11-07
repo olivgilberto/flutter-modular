@@ -1,0 +1,7 @@
+arb-dir: lib/adapters/driving/l10n
+template-arb-file: notes_module_en.arb
+output-localization-file: notes_module_localizations.dart
+output-class: NotesModuleLocalizations
+nullable-getter: false
+required-resource-attributes: true
+format: true

@@ -1,0 +1,23 @@
+name: notes_module
+description: Rascunho do capítulo 42, criado pelo checklist do capítulo 28; não entra na main.
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  get_it: ^9.3.0
+  go_router: ^18.1.1
+  intl: any
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  generate: true

@@ -17,6 +17,7 @@ workspace:
   - packages/design_system
   - packages/auth_module
   - packages/tasks_module
+  - packages/notes_module
   - mobile_tarefas_app
 
 melos:

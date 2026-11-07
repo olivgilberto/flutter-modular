@@ -39,6 +39,7 @@ docs/modules/, a linha nesta tabela e uma linha própria no
 |---|---|---|---|---|
 | auth_module | login, cadastro, sessão e logout | base | @olivgilberto | [modules/auth_module.md](modules/auth_module.md) |
 | tasks_module | tarefas offline-first, sincronização e conflitos | sessão | @olivgilberto | [modules/tasks_module.md](modules/tasks_module.md) |
+| notes_module | rascunho do capítulo 42 | sessão | @olivgilberto | [modules/notes_module.md](modules/notes_module.md) |
 
 ## Portas do core
 Catálogo em packages/core/lib/core.dart (capítulo 17). O core não tem a seção
