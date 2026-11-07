@@ -1,3 +1,4 @@
+import 'package:get_it/get_it.dart';
 import '../value_objects/task_title.dart';
 
 /// Em que ponto está uma tarefa. Arquivar é o fim: a tarefa sai da lista.
