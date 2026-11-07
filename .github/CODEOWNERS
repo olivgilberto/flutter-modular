@@ -1,0 +1,7 @@
+# Donos do código (capítulo 42). Vale a última linha que alcança o arquivo;
+# por isso a linha geral vem primeiro e cada módulo tem a sua, depois dela.
+# O check-deps confere que todo módulo de feature tem uma linha própria.
+# Numa organização, cada módulo apontaria para o time dele (@org/time).
+*                        @olivgilberto
+/packages/auth_module/   @olivgilberto
+/packages/tasks_module/  @olivgilberto

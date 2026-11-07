@@ -1,0 +1,10 @@
+# Os textos do próprio host (capítulo 37): o título do app e o aviso de
+# conexão. Os textos das telas ficam nos módulos; a tela de idioma não tem
+# nada a traduzir.
+arb-dir: lib/l10n
+template-arb-file: mobile_tarefas_en.arb
+output-localization-file: mobile_tarefas_localizations.dart
+output-class: MobileTarefasLocalizations
+nullable-getter: false
+required-resource-attributes: true
+format: true

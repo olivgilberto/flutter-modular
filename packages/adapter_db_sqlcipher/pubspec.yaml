@@ -1,0 +1,20 @@
+name: adapter_db_sqlcipher
+description: Banco local criptografado com SQLCipher para as portas LocalDatabaseFactory e LocalDatabase.
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+  sqflite_sqlcipher: ^3.4.1
+  flutter_secure_storage: ^11.2.0
+  path_provider: ^2.1.6
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+  sqflite_common_ffi: ^2.4.4

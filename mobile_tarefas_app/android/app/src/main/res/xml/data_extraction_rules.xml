@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Capítulo 30: os bancos dos módulos (files/local_databases, onde o
+     SqlcipherLocalDatabaseFactory os cria) e o armazenamento seguro (em
+     shared_prefs) nunca saem do aparelho. O android:allowBackup="false" do
+     manifesto desliga o backup na nuvem; no Android 12 ou mais novo, a
+     transferência entre aparelhos pode ignorá-lo, e é coberta aqui. As
+     preferências do AppPreferences ficam em files/datastore e seguem na
+     transferência. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="file" path="local_databases/" />
+        <exclude domain="sharedpref" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="file" path="local_databases/" />
+        <exclude domain="sharedpref" path="." />
+    </device-transfer>
+</data-extraction-rules>

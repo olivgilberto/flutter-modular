@@ -1,0 +1,4 @@
+{
+  "FLAVOR": "staging",
+  "API_BASE_URL": "https://api.staging.mobiletarefas.example"
+}

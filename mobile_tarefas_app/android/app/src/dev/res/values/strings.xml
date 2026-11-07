@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- O nome do app na tela, por flavor (capítulo 26). -->
+<resources>
+    <string name="app_name">Tarefas Dev</string>
+</resources>

@@ -1,0 +1,147 @@
+{
+  "@@locale": "en",
+  "loginTitle": "Sign in to your account",
+  "@loginTitle": {
+    "description": "Title of the sign-in screen."
+  },
+  "emailLabel": "Email",
+  "@emailLabel": {
+    "description": "Label of the email field, on sign-in and sign-up."
+  },
+  "passwordLabel": "Password",
+  "@passwordLabel": {
+    "description": "Label of the password field on sign-in."
+  },
+  "showPassword": "Show password",
+  "@showPassword": {
+    "description": "Tooltip of the button that reveals the password."
+  },
+  "hidePassword": "Hide password",
+  "@hidePassword": {
+    "description": "Tooltip of the button that hides the password again."
+  },
+  "loginSubmit": "Sign in",
+  "@loginSubmit": {
+    "description": "Button that sends the email and password."
+  },
+  "loginCreateAccount": "Create an account",
+  "@loginCreateAccount": {
+    "description": "Button on sign-in that opens the sign-up screen."
+  },
+  "loginUnexpectedError": "We couldn't sign you in right now. Please try again.",
+  "@loginUnexpectedError": {
+    "description": "Shown when sign-in fails for a reason the user cannot fix (no connection, server error)."
+  },
+  "checkEmail": "Check the email you typed.",
+  "@checkEmail": {
+    "description": "Shown when the email does not look like an email address."
+  },
+  "loginInvalidCredentials": "Incorrect email or password.",
+  "@loginInvalidCredentials": {
+    "description": "Shown on sign-in when the email and password do not match an account."
+  },
+  "sessionExpiredMaybeChanges": "Your session has expired, and there may be changes not sent yet. Sign in again to send what is left, or discard it.",
+  "@sessionExpiredMaybeChanges": {
+    "description": "Shown on sign-in after the session expired, when the app could not count the changes waiting to be sent."
+  },
+  "sessionExpiredChanges": "{count, plural, =0{Your session has expired. Sign in again.} =1{Your session has expired, and there is 1 change not sent yet. Sign in again to send it, or discard it.} other{Your session has expired, and there are {count} changes not sent yet. Sign in again to send them, or discard them.}}",
+  "@sessionExpiredChanges": {
+    "description": "Shown on sign-in after the session expired with changes made offline that were not sent. Has a case for zero: in Portuguese, the plural category 'one' covers 0 and 1.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "discardChanges": "Discard changes",
+  "@discardChanges": {
+    "description": "Button on sign-in that discards the changes left by an expired session."
+  },
+  "discardChangesTitle": "Discard changes?",
+  "@discardChangesTitle": {
+    "description": "Title of the dialog that confirms discarding the changes of an expired session."
+  },
+  "discardChangesMessage": "What was done offline will be deleted from this device and cannot be sent later.",
+  "@discardChangesMessage": {
+    "description": "Body of the dialog that confirms discarding the changes of an expired session."
+  },
+  "discard": "Discard",
+  "@discard": {
+    "description": "Confirm button of the discard dialog."
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button of the module's dialogs."
+  },
+  "registerTitle": "Create your account",
+  "@registerTitle": {
+    "description": "Title of the sign-up screen."
+  },
+  "nameLabel": "Name",
+  "@nameLabel": {
+    "description": "Label of the name field on sign-up."
+  },
+  "registerPasswordLabel": "Password (at least {minLength} characters)",
+  "@registerPasswordLabel": {
+    "description": "Label of the password field on sign-up, with the minimum length.",
+    "placeholders": {
+      "minLength": {
+        "type": "int",
+        "example": "15"
+      }
+    }
+  },
+  "registerSubmit": "Create account",
+  "@registerSubmit": {
+    "description": "Button that sends the sign-up form."
+  },
+  "registerUnexpectedError": "We couldn't create the account right now. Please try again.",
+  "@registerUnexpectedError": {
+    "description": "Shown when sign-up fails for a reason the user cannot fix (no connection, server error)."
+  },
+  "registerWeakPassword": "Choose another password: at least {minLength} characters, and not a well-known one.",
+  "@registerWeakPassword": {
+    "description": "Shown on sign-up when the password is too short or on the list of compromised passwords.",
+    "placeholders": {
+      "minLength": {
+        "type": "int",
+        "example": "15"
+      }
+    }
+  },
+  "registerEmailTaken": "This email already has an account. Go back and sign in with it.",
+  "@registerEmailTaken": {
+    "description": "Shown on sign-up when the email is already registered."
+  },
+  "registerCheckData": "Check your details and try again.",
+  "@registerCheckData": {
+    "description": "Shown on sign-up when the server rejects the data for another reason."
+  },
+  "logout": "Sign out",
+  "@logout": {
+    "description": "Button that signs the user out, shown below the signed-in screens."
+  },
+  "logoutTitle": "Sign out?",
+  "@logoutTitle": {
+    "description": "Title of the dialog shown before signing out with changes not sent."
+  },
+  "logoutLostChanges": "{count, plural, =0{No change made offline is waiting to be sent.} =1{1 change made offline has not been sent yet and will be lost.} other{{count} changes made offline have not been sent yet and will be lost.}}",
+  "@logoutLostChanges": {
+    "description": "Body of the sign-out dialog when there are changes waiting to be sent. Has a case for zero: in Portuguese, the plural category 'one' covers 0 and 1.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "logoutCheckFailed": "We couldn't check for changes not sent yet. If there are any, they will be lost.",
+  "@logoutCheckFailed": {
+    "description": "Body of the sign-out dialog when the app could not count the changes waiting to be sent."
+  },
+  "logoutConfirm": "Sign out anyway",
+  "@logoutConfirm": {
+    "description": "Confirm button of the sign-out dialog."
+  }
+}

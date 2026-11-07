@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Capítulo 27: só HTTPS, e só as autoridades certificadoras do sistema.
+     É o padrão do Android desde a API 28 (texto claro) e a API 24 (CAs do
+     usuário), escrito aqui para que nenhuma biblioteca o mude sem aparecer
+     num pull request. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

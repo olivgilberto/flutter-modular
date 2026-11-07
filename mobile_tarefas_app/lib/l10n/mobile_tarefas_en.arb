@@ -1,0 +1,23 @@
+{
+  "@@locale": "en",
+  "appTitle": "Tasks",
+  "@appTitle": {
+    "description": "Name of the app, used by the operating system's task switcher."
+  },
+  "connectivityOffline": "No connection. What you do is kept and sent when the connection is back.",
+  "@connectivityOffline": {
+    "description": "Notice below every screen when the device has no network."
+  },
+  "connectivityNoInternet": "No access to the server. What you do is kept and sent as soon as it answers.",
+  "@connectivityNoInternet": {
+    "description": "Notice below every screen when the network is up but the server does not answer."
+  },
+  "deviceIntegrityWarning": "This device seems to be rooted or jailbroken. The app keeps working, but the data stored on it is less protected.",
+  "@deviceIntegrityWarning": {
+    "description": "Non-blocking notice at the top of the screen when the device seems rooted or jailbroken (chapter 38)."
+  },
+  "deviceIntegrityDismiss": "Got it",
+  "@deviceIntegrityDismiss": {
+    "description": "Button that dismisses the rooted/jailbroken device notice."
+  }
+}

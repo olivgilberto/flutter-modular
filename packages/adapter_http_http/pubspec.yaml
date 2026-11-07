@@ -1,0 +1,14 @@
+name: adapter_http_http
+description: Adaptador HTTP com o pacote http para as portas ApiClient e ReachabilityProbe (capítulo 41).
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.0
+
+# O http entra pelo pub add do verificar.sh, na versão mais nova compatível.
+dependencies:
+  core:
+  http: ^1.6.0
+dev_dependencies:
+  lints: ^6.1.0
+  test: ^1.31.1

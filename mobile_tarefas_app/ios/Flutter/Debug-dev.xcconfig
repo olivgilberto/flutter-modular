@@ -1,0 +1,5 @@
+// Gerado por tool/configure_ios_flavors.rb (capítulo 26).
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-dev.xcconfig"
+#include "Generated.xcconfig"
+PRODUCT_BUNDLE_IDENTIFIER = com.zayitbrazil.mobiletarefas.dev
+APP_DISPLAY_NAME = Tarefas Dev

@@ -1,0 +1,10 @@
+name: core
+description: Portas e código sem tecnologia compartilhados por todos os pacotes.
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.0
+
+dev_dependencies:
+  lints: ^6.1.0
+  test: ^1.31.1

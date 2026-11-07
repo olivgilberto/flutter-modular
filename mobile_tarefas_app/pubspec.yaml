@@ -1,0 +1,47 @@
+name: mobile_tarefas_app
+description: O host do mobile_tarefas, o único pacote que gera um aplicativo e o único que conhece os adaptadores.
+publish_to: none
+version: 0.1.0
+resolution: workspace
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  core:
+  design_system:
+  auth_module:
+  tasks_module:
+  adapter_analytics_firebase:
+  adapter_connectivity_connectivity_plus:
+  adapter_db_sqlcipher:
+  adapter_http_http:
+  adapter_logging_crashlytics:
+  adapter_prefs_shared_preferences:
+  adapter_sync_workmanager:
+  firebase_core: ^5.0.0
+  get_it: ^9.3.0
+  go_router: ^18.1.0
+  intl: any
+  app_tracking_transparency: ^2.0.7
+  safe_device: ^1.4.1
+  bloc: ^9.2.1
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_secure_storage: ^11.2.0
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  path_provider: ^2.1.6
+  sqflite_sqlcipher: ^3.4.1
+
+flutter:
+  uses-material-design: true
+  # Capítulo 37: o gen-l10n gera a MobileTarefasLocalizations a partir do
+  # l10n.yaml. O intl entra pelo pub add.
+  generate: true

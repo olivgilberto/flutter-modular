@@ -1,0 +1,233 @@
+# Capítulo 40: o pipeline de cada pull request e de cada merge na main.
+# A versão do Flutter é a mesma do Mac em que o livro foi verificado; ela
+# muda num pull request próprio, nunca junto com código.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Um push novo no mesmo pull request cancela a execução anterior. Na main,
+# nada é cancelado: cada merge gera o seu build de release e envia os seus
+# símbolos, e o seguinte espera na fila.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  FLUTTER_VERSION: 3.47.5
+
+jobs:
+  verify:
+    name: Análise, fronteiras e testes
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - name: Dependências
+        run: flutter pub get
+      - name: Traduções (gen-l10n, capítulo 37)
+        run: |
+          # Capítulo 42: todo membro do workspace com um l10n.yaml, sem
+          # lista escrita à mão.
+          for p in $(grep -oE '^  - [^ ]+' pubspec.yaml | sed 's/^  - //'); do
+            [ -f "$p/l10n.yaml" ] || continue
+            (cd "$p" && flutter gen-l10n) || exit 1
+          done
+      # As quatro verificações rodam mesmo depois de uma falha: o pull
+      # request mostra todos os problemas de uma vez, e não só o primeiro.
+      - name: Formatação (só confere; quem formata é o autor)
+        if: ${{ !cancelled() }}
+        run: |
+          dart format --output=none --set-exit-if-changed $(ls -d \
+            packages/*/lib packages/*/test tools/*/lib tools/*/bin tools/*/test \
+            mobile_tarefas_app/lib mobile_tarefas_app/test \
+            mobile_tarefas_app/integration_test 2>/dev/null)
+      - name: Análise, com o plugin das fronteiras (capítulos 15 e 40)
+        if: ${{ !cancelled() }}
+        run: dart run melos run analyze --no-select
+      - name: check-deps (capítulo 15)
+        if: ${{ !cancelled() }}
+        run: dart run melos run check-deps --no-select
+      - name: Testes
+        if: ${{ !cancelled() }}
+        run: dart run melos run test --no-select
+
+  # Nos pull requests: cada flavor compila, em debug, sem segredo nenhum.
+  android-debug:
+    name: Android ${{ matrix.flavor }} (debug)
+    if: github.event_name == 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      # Um flavor que falha não cancela os outros: cada um diz o seu.
+      fail-fast: false
+      matrix:
+        flavor: [dev, staging, prod]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Build
+        working-directory: mobile_tarefas_app
+        run: >-
+          flutter build apk --debug
+          --flavor ${{ matrix.flavor }}
+          -t lib/main_${{ matrix.flavor }}.dart
+          --dart-define-from-file=config/${{ matrix.flavor }}.json
+
+  # Cópia pública do livro: sem os segredos da chave de upload (num fork, por
+  # exemplo), o build de release não roda, em vez de falhar. No livro, ele
+  # roda sempre na main (capítulo 40).
+  release-gate:
+    name: Segredos de release presentes?
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    outputs:
+      signing: ${{ steps.check.outputs.signing }}
+    steps:
+      - id: check
+        env:
+          KEY: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: echo "signing=$([ -n "$KEY" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+  # Na main: staging e prod em release, assinados com a chave de upload,
+  # ofuscados, com o número do build vindo do CI, e os símbolos de cada um
+  # enviados ao Crashlytics do projeto do flavor (capítulo 38).
+  android-release:
+    name: Android ${{ matrix.flavor }} (release)
+    if: needs.release-gate.outputs.signing == 'true'
+    needs: [verify, release-gate]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      # Um flavor que falha não cancela os outros: cada um diz o seu.
+      fail-fast: false
+      # O nome do segredo da conta de serviço vem da matriz: um segredo
+      # ausente falha o passo, sem cair no de outro ambiente.
+      matrix:
+        include:
+          - flavor: staging
+            sa_secret: FIREBASE_SA_STAGING
+          - flavor: prod
+            sa_secret: FIREBASE_SA_PROD
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Chave de upload, dos segredos do repositório
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+        run: |
+          # Sem a chave, o build sairia assinado com a de depuração, que a
+          # loja recusa: o passo falha antes.
+          test -n "$ANDROID_KEYSTORE_BASE64" || { echo "segredo ANDROID_KEYSTORE_BASE64 ausente"; exit 1; }
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/upload.jks"
+          cat > mobile_tarefas_app/android/key.properties <<EOF
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyPassword=$ANDROID_KEY_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          storeFile=$RUNNER_TEMP/upload.jks
+          EOF
+      - name: Build (app bundle, ofuscado)
+        working-directory: mobile_tarefas_app
+        run: >-
+          flutter build appbundle --release
+          --obfuscate --split-debug-info=build/symbols/${{ matrix.flavor }}
+          --build-number=${{ github.run_number }}
+          --flavor ${{ matrix.flavor }}
+          -t lib/main_${{ matrix.flavor }}.dart
+          --dart-define-from-file=config/${{ matrix.flavor }}.json
+      - name: Assinatura confere (a chave de upload, não a de depuração)
+        working-directory: mobile_tarefas_app
+        run: |
+          aab=$(ls build/app/outputs/bundle/${{ matrix.flavor }}Release/*.aab)
+          keytool -printcert -jarfile "$aab" | tee "$RUNNER_TEMP/cert.txt"
+          ! grep -q "CN=Android Debug" "$RUNNER_TEMP/cert.txt"
+      - name: Símbolos para o Crashlytics
+        # Só com o Firebase configurado (o firebase.json do capítulo 38).
+        if: hashFiles('mobile_tarefas_app/firebase.json') != ''
+        working-directory: mobile_tarefas_app
+        env:
+          FIREBASE_SA: ${{ secrets[matrix.sa_secret] }}
+        run: |
+          test -n "$FIREBASE_SA" || { echo "segredo ${{ matrix.sa_secret }} ausente"; exit 1; }
+          echo "$FIREBASE_SA" > "$RUNNER_TEMP/sa.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json"
+          # O app do flavor pelo firebase.json, que o flutterfire configure
+          # mantém: o google-services.json traz todos os apps Android do
+          # projeto, e o primeiro pode ser um antigo (o identificador mudou
+          # em 05/11/2026).
+          app_id=$(jq -r --arg c "src/${{ matrix.flavor }}" \
+            '.flutter.platforms.android.buildConfigurations[$c].appId' firebase.json)
+          test -n "$app_id" && test "$app_id" != null
+          # Versão fixa, como a do Flutter: muda num pull request próprio.
+          npm install --global firebase-tools@15.34.2
+          firebase crashlytics:symbols:upload --app="$app_id" \
+            build/symbols/${{ matrix.flavor }}
+      - uses: actions/upload-artifact@v5
+        with:
+          name: android-${{ matrix.flavor }}-${{ github.run_number }}
+          path: |
+            mobile_tarefas_app/build/app/outputs/bundle/${{ matrix.flavor }}Release/*.aab
+            mobile_tarefas_app/build/symbols/${{ matrix.flavor }}
+          retention-days: 30
+
+  # Na main: o iOS de produção compila, ofuscado, sem assinatura. Assinar
+  # pede uma conta do Apple Developer Program, que o livro não usa; o
+  # caminho fica descrito no capítulo 40.
+  ios-release:
+    name: iOS prod (release, sem assinatura)
+    if: github.event_name == 'push'
+    needs: verify
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - name: Xcode
+        run: xcodebuild -version
+      - name: FlutterFire CLI (a fase de build que copia o GoogleService-Info.plist)
+        run: |
+          dart pub global activate flutterfire_cli
+          echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+      - run: flutter pub get
+      - name: Build
+        working-directory: mobile_tarefas_app
+        run: >-
+          flutter build ios --release --no-codesign
+          --obfuscate --split-debug-info=build/symbols/ios-prod
+          --build-number=${{ github.run_number }}
+          --flavor prod
+          -t lib/main_prod.dart
+          --dart-define-from-file=config/prod.json

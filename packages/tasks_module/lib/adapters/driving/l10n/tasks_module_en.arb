@@ -1,0 +1,201 @@
+{
+  "@@locale": "en",
+  "tasksTitle": "Tasks",
+  "@tasksTitle": {
+    "description": "Title of the task list."
+  },
+  "hideCompleted": "Hide completed",
+  "@hideCompleted": {
+    "description": "Tooltip of the button that hides completed tasks."
+  },
+  "showCompleted": "Show completed",
+  "@showCompleted": {
+    "description": "Tooltip of the button that shows completed tasks."
+  },
+  "newTaskLabel": "New task",
+  "@newTaskLabel": {
+    "description": "Label of the field that creates a task."
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Tooltip of the button that creates a task."
+  },
+  "emptyTitle": "Write a title for the task.",
+  "@emptyTitle": {
+    "description": "Shown when a task is saved without a title."
+  },
+  "titleTooLong": "The title is over the maximum length.",
+  "@titleTooLong": {
+    "description": "Shown when a task title is too long."
+  },
+  "taskGone": "This task is no longer on the list.",
+  "@taskGone": {
+    "description": "Shown when the task was removed while the user was looking at it."
+  },
+  "taskGoneTitle": "This task is no longer on the list",
+  "@taskGoneTitle": {
+    "description": "Title of the screen of a task that was removed while it was open."
+  },
+  "refreshFailed": "Couldn't refresh right now. The list on this device is still here.",
+  "@refreshFailed": {
+    "description": "Shown when pull-to-refresh fails; the list stored on the device stays on screen."
+  },
+  "unexpectedError": "Something went wrong. Please try again.",
+  "@unexpectedError": {
+    "description": "Shown when an action fails for a reason the user cannot fix."
+  },
+  "emptyListTitle": "No tasks here",
+  "@emptyListTitle": {
+    "description": "Title shown when the list has no tasks."
+  },
+  "emptyListMessage": "Write the first one in the field above.",
+  "@emptyListMessage": {
+    "description": "Message shown when the list has no tasks."
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Tooltip of the button that opens a task."
+  },
+  "conflictsNotice": "{count, plural, =0{No change needs your decision} =1{1 change needs your decision} other{{count} changes need your decision}}",
+  "@conflictsNotice": {
+    "description": "Notice above the list when the server did not accept some changes. Has a case for zero: in Portuguese, the plural category 'one' covers 0 and 1.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "resolve": "Resolve",
+  "@resolve": {
+    "description": "Button of the notice that opens the screen of changes not accepted."
+  },
+  "loadFailedTitle": "Couldn't load the tasks",
+  "@loadFailedTitle": {
+    "description": "Title shown when the first list could not be loaded."
+  },
+  "loadFailedMessage": "The first list comes from the server. Check the connection.",
+  "@loadFailedMessage": {
+    "description": "Message shown when the first list could not be loaded."
+  },
+  "tryAgain": "Try again",
+  "@tryAgain": {
+    "description": "Button that repeats an action that failed."
+  },
+  "taskTitle": "Task",
+  "@taskTitle": {
+    "description": "Title of the screen of one task."
+  },
+  "taskTitleLabel": "Title",
+  "@taskTitleLabel": {
+    "description": "Label of the task title field."
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Button that saves the task."
+  },
+  "archive": "Archive",
+  "@archive": {
+    "description": "Button that archives the task, and confirm button of its dialog."
+  },
+  "archiveTitle": "Archive task?",
+  "@archiveTitle": {
+    "description": "Title of the dialog that confirms archiving a task."
+  },
+  "archiveMessage": "It leaves the list. On this device, there is no way to undo it.",
+  "@archiveMessage": {
+    "description": "Body of the dialog that confirms archiving a task."
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button of the module's dialogs."
+  },
+  "conflictsTitle": "Changes not accepted",
+  "@conflictsTitle": {
+    "description": "Title of the screen of changes the server did not accept."
+  },
+  "noConflicts": "Nothing waiting for your decision",
+  "@noConflicts": {
+    "description": "Shown when there are no changes waiting for a decision."
+  },
+  "conflictsOffline": "No connection to the server. Try again when it is back.",
+  "@conflictsOffline": {
+    "description": "Shown when a decision needs the server and there is no connection."
+  },
+  "conflictChangedElsewhere": "This task changed somewhere else",
+  "@conflictChangedElsewhere": {
+    "description": "Heading of a change that conflicts with a newer version on the server."
+  },
+  "conflictRejected": "The server rejected this change",
+  "@conflictRejected": {
+    "description": "Heading of a change the server refused."
+  },
+  "taskSummary": "\"{title}\", {status, select, open{open} done{done} archived{archived} other{{status}}}",
+  "@taskSummary": {
+    "description": "A task as shown when comparing versions: the title and the status. The status is the name of the TaskStatus value.",
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "Pay the bill"
+      },
+      "status": {
+        "type": "String",
+        "example": "done"
+      }
+    }
+  },
+  "onDevice": "On this device: {task}",
+  "@onDevice": {
+    "description": "The version of a task on the device; task is the task summary.",
+    "placeholders": {
+      "task": {
+        "type": "String"
+      }
+    }
+  },
+  "onServer": "On the server: {task}",
+  "@onServer": {
+    "description": "The version of a task on the server; task is the task summary.",
+    "placeholders": {
+      "task": {
+        "type": "String"
+      }
+    }
+  },
+  "fetchingServer": "Fetching the server version…",
+  "@fetchingServer": {
+    "description": "Shown while the server version of a task is loading."
+  },
+  "serverGone": "On the server: the task no longer exists.",
+  "@serverGone": {
+    "description": "Shown when the task was deleted on the server."
+  },
+  "serverUnavailable": "No connection to fetch the server version.",
+  "@serverUnavailable": {
+    "description": "Shown when the server version could not be fetched."
+  },
+  "keepMine": "Keep mine",
+  "@keepMine": {
+    "description": "Decision: send the device version over the server one."
+  },
+  "keepServer": "Keep the server's",
+  "@keepServer": {
+    "description": "Decision: drop the device version and keep the server one."
+  },
+  "redo": "Redo",
+  "@redo": {
+    "description": "Decision: open the task to make the change again."
+  },
+  "discard": "Discard",
+  "@discard": {
+    "description": "Decision: delete the change from the device; also the confirm button of its dialog."
+  },
+  "discardTitle": "Discard the change?",
+  "@discardTitle": {
+    "description": "Title of the dialog that confirms discarding a change."
+  },
+  "discardMessage": "What you did to this task will be deleted from this device, and the server version comes back at the next refresh.",
+  "@discardMessage": {
+    "description": "Body of the dialog that confirms discarding a change."
+  }
+}

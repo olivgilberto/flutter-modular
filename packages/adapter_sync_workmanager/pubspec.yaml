@@ -1,0 +1,18 @@
+name: adapter_sync_workmanager
+description: Sincronização em segundo plano com workmanager para a porta SyncScheduler.
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+  workmanager: ^0.10.10
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5

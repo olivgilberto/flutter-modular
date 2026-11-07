@@ -1,0 +1,11 @@
+{
+  "user": {
+    "id": "u-1",
+    "name": "Ana",
+    "email": "ana@exemplo.com",
+    "createdAt": "2026-10-01T12:00:00Z"
+  },
+  "accessToken": "eyJhbGciOiJIUzI1NiJ9.acesso",
+  "refreshToken": "rt-1",
+  "expiresIn": 900
+}

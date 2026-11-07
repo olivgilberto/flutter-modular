@@ -1,0 +1,15 @@
+# Só o que vale para o workspace inteiro. Os lints oficiais ficam no
+# analysis_options.yaml de cada pacote.
+analyzer:
+  exclude:
+    - build/**
+
+# O plugin do workspace_lints (capítulos 15 e 40). Plugins só podem ser
+# declarados aqui, na raiz, e as regras de lint de um plugin vêm
+# desligadas: cada uma é ligada pelo nome.
+plugins:
+  workspace_lints:
+    path: tools/workspace_lints
+    diagnostics:
+      get_it_outside_edges: true
+      layer_imports: true

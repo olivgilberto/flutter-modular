@@ -1,0 +1,12 @@
+# Traduções do tasks_module (capítulo 37). Os ARB e a classe gerada ficam no
+# lado driving: texto é coisa de tela, e o domínio não tem nenhum.
+arb-dir: lib/adapters/driving/l10n
+template-arb-file: tasks_module_en.arb
+output-localization-file: tasks_module_localizations.dart
+output-class: TasksModuleLocalizations
+# TasksModuleLocalizations.of(context) devolve a classe, sem o `!`: o
+# delegate do módulo é parte do checklist de ligação do host.
+nullable-getter: false
+# Toda chave tem a descrição, para quem traduz.
+required-resource-attributes: true
+format: true

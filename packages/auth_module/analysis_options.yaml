@@ -1,0 +1,10 @@
+# A raiz entra por último no include: ela declara o plugin do
+# workspace_lints (capítulo 40). Sem ela, este arquivo substituiria o da
+# raiz para os arquivos do pacote, e o plugin não rodaria aqui.
+include:
+  - package:flutter_lints/flutter.yaml
+  - ../../analysis_options.yaml
+
+analyzer:
+  exclude:
+    - build/**

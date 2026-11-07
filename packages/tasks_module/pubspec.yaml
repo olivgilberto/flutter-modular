@@ -1,0 +1,32 @@
+name: tasks_module
+description: Tarefas do mobile_tarefas, offline-first, um hexágono completo com domínio, aplicação e adaptadores.
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+  design_system:
+  get_it: ^9.3.0
+  flutter_bloc: ^9.1.1
+  bloc_concurrency: ^0.3.0
+  go_router: ^18.1.1
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+dev_dependencies:
+  bloc_test: ^10.0.0
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5
+  sqflite_common_ffi: ^2.4.5
+
+# Capítulo 37: o gen-l10n gera a TasksModuleLocalizations a partir do
+# l10n.yaml. O flutter_localizations e o intl entram pelo pub add.
+flutter:
+  generate: true

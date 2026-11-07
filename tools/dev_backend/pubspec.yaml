@@ -1,0 +1,18 @@
+name: dev_backend
+description: Backend em memória para desenvolvimento, que segue o contrato do mobile_tarefas (capítulo 35). Nunca dependência de outro pacote.
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.0 # a mesma linha da raiz
+# shelf, shelf_router, lints e test entram pelo pub add do verificar.sh. Os
+# pacotes do workspace abaixo só servem ao teste de contrato.
+dev_dependencies:
+  adapter_http_http:
+  auth_module:
+  core:
+  lints: ^6.1.0
+  tasks_module:
+  test: ^1.31.1
+dependencies:
+  shelf: ^1.4.3
+  shelf_router: ^1.1.5

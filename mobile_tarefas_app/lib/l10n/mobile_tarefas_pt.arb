@@ -1,0 +1,8 @@
+{
+  "@@locale": "pt",
+  "appTitle": "Tarefas",
+  "connectivityOffline": "Sem conexão. O que você fizer fica guardado e é enviado quando a conexão voltar.",
+  "connectivityNoInternet": "Sem acesso ao servidor. O que você fizer fica guardado e é enviado assim que ele responder.",
+  "deviceIntegrityWarning": "Este aparelho parece ter root ou jailbreak. O app continua funcionando, mas os dados guardados nele ficam menos protegidos.",
+  "deviceIntegrityDismiss": "Entendi"
+}

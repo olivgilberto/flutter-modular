@@ -1,0 +1,18 @@
+name: adapter_connectivity_connectivity_plus
+description: Interface de rede com connectivity_plus para a porta NetworkInterfaceMonitor.
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+  connectivity_plus: ^7.3.2
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5
